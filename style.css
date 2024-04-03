@@ -1,0 +1,42 @@
+body, ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav {
+    background-color: #333; /* Change this to the desired background color */
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wrapper img {
+    height: 40px; /* Adjust the height of the logo as needed */
+}
+
+ul {
+    display: flex;
+}
+
+li {
+    margin-right: 20px; /* Adjust the spacing between menu items */
+}
+
+a {
+    color: #fff; /* Change this to the desired text color */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px; /* Adjust the font size as needed */
+    transition: color 0.3s ease; /* Add a smooth transition effect */
+}
+
+a:hover {
+    color: #ff4500; /* Change this to the desired hover color */
+}
