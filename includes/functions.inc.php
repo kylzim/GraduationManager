@@ -148,3 +148,66 @@ function uidExists($conn, $username, $email)
 
         }
     }
+
+//my attempt
+
+// Get user information
+function getUserInfo($conn, $field, $userId) {
+    $sql = "SELECT $field FROM users WHERE usersId = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../profile.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $userId);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($result)) {
+        return $row[$field];
+    } else {
+        return "";
+    }
+
+    mysqli_stmt_close($stmt);
+}
+
+// Update user information
+function updateUser($conn, $userId, $name, $email, $uid) {
+	error_log("userId: $userId");
+    error_log("name: $name");
+    error_log("email: $email");
+    $sql = "UPDATE users SET usersName = ?, usersEmail = ?, usersUid = ? WHERE usersId = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../profile.php?error=stmtfailed");
+        exit();
+    }
+
+	// $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+
+    mysqli_stmt_bind_param($stmt, "sssi", $name, $email, $uid, $userId);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../profile.php?update=success");
+    exit();
+}
+
+// Delete user account
+function deleteUser($conn, $userId) {
+    $sql = "DELETE FROM users WHERE usersId = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../profile.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $userId);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    session_unset();
+    session_destroy();
+    header("location: logout.inc.php?delete=success");
+    exit();
+}
