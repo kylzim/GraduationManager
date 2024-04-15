@@ -11,15 +11,24 @@ session_start();
     <nav> 
         <div class="wrapper"> 
                 <ul> 
-                    <li><a href="index.php">Home</a></li>
+                    <!-- <li><a href="index.php">Home</a></li> -->
                       <?php
-                      if (isset($_SESSION["useruid"])) {
+                      if (isset($_SESSION["useruid"]))  {
+                        echo "<li><a href='index.php'>Home</a></li>";
+                        echo "<li><a href='profile.php'>Profile page</a></li>";
+                        echo "<li><a href='includes/logout.inc.php'>Log out</a></li>";
+                      }
+                      elseif(isset($_SESSION["adminuid"])) {
+                        echo "<li><a href='admin_dashboard.php'>Home</a></li>";
                         echo "<li><a href='profile.php'>Profile page</a></li>";
                         echo "<li><a href='includes/logout.inc.php'>Log out</a></li>";
                       }
                       else {
+                        echo "<li><a href='index.php'>Home</a></li>";
                         echo "<li><a href='signup.php'>Sign up</a></li>";
                         echo "<li><a href='login.php'>Log in</a></li>";
+                        echo "<li><a href='admin.php'>Admin Sign up</a></li>";
+                        echo "<li><a href='loginadmin.php'>Admin Log in</a></li>";
                       }
                       ?>
 

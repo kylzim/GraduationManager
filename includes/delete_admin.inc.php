@@ -5,8 +5,8 @@ if (isset($_GET["id"])) {
 
     $userId = $_GET["id"];
 
-    deleteUser($conn, $userId);
-    // deleteAdminUser($conn, $userId);
+    // deleteUser($conn, $userId);
+    deleteAdminUser($conn, $userId);
  
 } else {
     header("location: ../profile.php");

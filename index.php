@@ -11,6 +11,11 @@ include_once 'get_courses.php';
         $userId = $_SESSION["userid"];
         echo "<p> Hello there " . $_SESSION["useruid"] . "</p>";
         $courses = getCourses($conn, $userId);
+//     }
+
+//     elseif (isset($_SESSION["adminuid"])) {
+//         $adminId = $_SESSION["adminid"];
+//         echo "<p> Hello there admin " . $_SESSION["adminuid"] . "</p>";
     ?>
         <!DOCTYPE html>
         <html lang="en">
